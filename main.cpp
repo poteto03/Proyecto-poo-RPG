@@ -11,11 +11,27 @@ int main() {
 
     cout << "=====================" << endl;
 
-    player->doAttack(enemy);
-    enemy->doAttack(player);
+    int round=0;
 
-    cout << player->toString() << endl;
-    cout << enemy->toString() << endl;
+
+    while (player->getHealth() >= enemy->getHealth() && enemy->getHealth() >= 0){
+        player->doAttack(enemy);
+        enemy->doAttack(player);
+        round ++;
+        cout <<"Round "<<round<<endl;
+        cout << player->toString() << endl;
+        cout << enemy->toString() << endl;
+    }
+
+
+   if (player->getHealth() > enemy->getHealth()){
+       cout<<"After "<<round<<" rounds"<<endl;
+       cout<<"Player "<<player->getName()<< " wins!"<<endl;
+       cout<<"Remaining health "<<player->getHealth()<<endl;
+   }
+   else{
+       cout<<"Enemy "<<enemy->getName()<< " wins!"<<endl;
+   }
 
     delete player;
     delete enemy;
